@@ -3,12 +3,14 @@
   <head> <link rel="stylesheet" href="style.css"></head>
 
   <body>
-    <p id="countdown"></p>
-    <label for="time-input">أدخل الوقت بالثواني:</label>
-    <input type="number" id="time-input" />
-    <button id="start">بدء</button>
-    <button id="stop">إيقاف</button>
-    <button id="reset">إعادة تعيين</button>
+    <div id="countdown-container">
+  <p id="countdown">0h 0m 0s</p>
+  <label for="time-input">أدخل الوقت بالدقائق</label>
+  <input type="number" id="time-input">
+  <button id="start">بدء</button>
+  <button id="stop">إيقاف</button>
+  <button id="reset">إعادة تعيين</button>
+</div>
 
     <script>
       // تحديد عنصر الشاشة الذي سيتم تحديثه
@@ -40,11 +42,11 @@
 
           // تنسيق الوقت كساعات ودقائق وثوانٍ
           var formattedTime =
-            ("0" + hours).slice(-2) +
-            ":" +
-            ("0" + minutes).slice(-2) +
-            ":" +
-            ("0" + remainingSeconds).slice(-2);
+            ("" + hours).slice(-2) +
+            "h " +
+            ("" + minutes).slice(-2) +
+            "m " +
+            ("" + remainingSeconds).slice(-2) + "s";
 
           // تحديث عنصر الشاشة
           countdownElement.innerHTML = "" + formattedTime;
@@ -71,7 +73,7 @@
       // الوظيفة التي تعيد تعيين العد التنازلي
       function resetCountdown() {
         clearInterval(countdown);
-        countdownElement.innerHTML = "00:00:00";
+        countdownElement.innerHTML = "0";
         document.getElementById("time-input").value = "";
       }
 
